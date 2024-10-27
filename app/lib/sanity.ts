@@ -10,6 +10,6 @@ export const client = createClient({
 });
 const builder = imageUrlBuilder(client);
 
-export function ulrFor(source: SanityImageSource | string) {
+export function ulrFor(source: any) {
   return builder.image(source);
 }
