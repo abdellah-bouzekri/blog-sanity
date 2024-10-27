@@ -11,5 +11,5 @@ export interface fullBlog {
   currentSlug: string;
   title: string;
   content: TypedObject[];
-  titleImage: any;
+  titleImage: { url: string };
 }

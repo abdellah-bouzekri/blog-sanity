@@ -1,5 +1,6 @@
 import { createClient } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 export const client = createClient({
   apiVersion: "2023-10-01",
@@ -9,6 +10,6 @@ export const client = createClient({
 });
 const builder = imageUrlBuilder(client);
 
-export function ulrFor(source: any) {
+export function ulrFor(source: SanityImageSource | string) {
   return builder.image(source);
 }
