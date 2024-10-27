@@ -4,18 +4,19 @@ import { PortableText } from "next-sanity";
 import Image from "next/image";
 
 async function getData(slug: string) {
-  const query = `*[_type == 'blog' && slug.current == '${slug}'] {
-    "currentSlug" : current.slug,
-      title,
-      content,
-      titleImage
-}[0]`;
-  const data = await client.fetch(query);
+  const query = `*[_type == 'blog' && slug.current == $slug] {
+    "currentSlug" : slug.current,
+    title,
+    content,
+    titleImage
+  }[0]`;
+  const data = await client.fetch(query, { slug });
   return data;
 }
 
 async function BlogArticle({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+  const { slug } = await params;
+
   const data: fullBlog = await getData(slug);
 
   if (!data) {
