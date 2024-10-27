@@ -1,6 +1,6 @@
 import { createClient } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+// import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 export const client = createClient({
   apiVersion: "2023-10-01",
