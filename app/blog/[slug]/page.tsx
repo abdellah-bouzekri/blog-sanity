@@ -14,14 +14,18 @@ async function getData(slug: string) {
   return data;
 }
 
-async function BlogArticle({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+async function BlogArticle({ params }: { params: { slug: string } }) {
+  const { slug } = params;
   const data: fullBlog = await getData(slug);
-  // console.log(data);
+
+  if (!data) {
+    return <div>Blog not found</div>;
+  }
+
   return (
     <div className="mt-8">
       <h1>
-        <span className="block text-base text-center text-primary uppercase tracking-wide font-semibold ">
+        <span className="block text-base text-center text-primary uppercase tracking-wide font-semibold">
           Abdellah - Blog
         </span>
         <span className="mt-2 block text-2xl text-center leading-3 font-bold tracking-tight sm:text-4xl">
@@ -34,9 +38,8 @@ async function BlogArticle({ params }: { params: Promise<{ slug: string }> }) {
         height={800}
         alt="title image"
         priority
-        className="rounded-lg object-cover mt-8 "
+        className="rounded-lg object-cover mt-8"
       />
-
       <div className="mt-16 prose prose-blue prose-lg dark:prose-invert">
         <PortableText value={data.content} />
       </div>
