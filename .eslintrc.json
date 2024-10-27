@@ -3,6 +3,6 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
   "rules": {
-    "@typescript-eslint/no-explicit-any": "warn" // You can use "off" instead of "warn" if you want to disable it completely
+    "@typescript-eslint/no-explicit-any": "off" // You can use "off" instead of "warn" if you want to disable it completely
   }
 }

@@ -1,5 +1,4 @@
 import { TypedObject } from "@portabletext/types";
-// import { SanityImageObject } from "@sanity/image-url/lib/types/types";
 
 export interface simpleBlogCard {
   title: string;
