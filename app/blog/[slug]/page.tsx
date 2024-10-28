@@ -1,5 +1,6 @@
 import { fullBlog } from "@/app/lib/interface";
 import { client, ulrFor } from "@/app/lib/sanity";
+import { Card, CardContent } from "@/components/ui/card";
 import { PortableText } from "next-sanity";
 import Image from "next/image";
 
@@ -24,27 +25,41 @@ async function BlogArticle({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div className="mt-8">
-      <h1>
-        <span className="block text-base text-center text-primary uppercase tracking-wide font-semibold">
-          Abdellah - Blog
-        </span>
-        <span className="mt-2 block text-2xl text-center leading-3 font-bold tracking-tight sm:text-4xl">
-          {data.title}
-        </span>
-      </h1>
-      <Image
-        src={ulrFor(data.titleImage).url()}
-        width={800}
-        height={800}
-        alt="title image"
-        priority
-        className="rounded-lg object-cover mt-8"
-      />
-      <div className="mt-16 prose prose-blue prose-lg dark:prose-invert">
-        <PortableText value={data.content} />
-      </div>
-    </div>
+    <main className="container mx-auto px-4 py-12 max-w-4xl">
+      <article className="space-y-8">
+        {/* Header Section */}
+        <header className="space-y-6 text-center">
+          <div className="space-y-2">
+            <p className="text-sm font-medium text-primary uppercase tracking-wider">
+              Abdellah - Blog
+            </p>
+            <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-4xl lg:text-5xl">
+              {data.title}
+            </h1>
+          </div>
+        </header>
+
+        {/* Featured Image */}
+        <Card className="overflow-hidden border-none">
+          <CardContent className="p-0">
+            <div className="relative aspect-video w-full">
+              <Image
+                src={ulrFor(data.titleImage).url()}
+                fill
+                alt={data.title}
+                priority
+                className="object-cover rounded-lg"
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Article Content */}
+        <div className="prose prose-lg dark:prose-invert prose-headings:font-bold prose-headings:tracking-tighter prose-p:leading-relaxed prose-a:text-primary max-w-none">
+          <PortableText value={data.content} />
+        </div>
+      </article>
+    </main>
   );
 }
 
